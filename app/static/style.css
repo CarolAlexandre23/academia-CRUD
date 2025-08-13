@@ -1,0 +1,101 @@
+/* Reset básico */
+body, h1, h2, h3, p, table, th, td, a, input, select, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fundo e fonte */
+body {
+    background-color: #111; /* Preto quase puro */
+    color: #fff;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+
+/* Títulos */
+h1, h2 {
+    color: #e50914; /* Vermelho vibrante */
+    margin-bottom: 15px;
+}
+
+/* Links */
+a {
+    color: #e50914;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Botões */
+button, input[type="submit"] {
+    background-color: #e50914;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #b00610; /* Vermelho mais escuro no hover */
+}
+
+/* Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #222;
+    color: #e50914;
+    border-bottom: 2px solid #e50914;
+}
+
+tr:nth-child(even) {
+    background-color: #1a1a1a;
+}
+
+tr:hover {
+    background-color: #2a2a2a;
+}
+
+/* Formulários */
+form {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #e50914;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    background-color: #111;
+    color: #fff;
+    border: 1px solid #e50914;
+    border-radius: 4px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #ff1f2a;
+    box-shadow: 0 0 5px #ff1f2a;
+}

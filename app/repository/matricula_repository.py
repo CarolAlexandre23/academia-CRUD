@@ -61,7 +61,7 @@ class MatriculaRepository:
             UPDATE matricula
             SET data_inicio = ?, plano = ?, aluno_id = ?
             WHERE id = ?
-        """, (matricula.get_data_inicio(), matricula.get_plano(), matricula.aluno_id(), matricula.get_id()))
+        """, (matricula.get_data_inicio(), matricula.get_plano(), matricula.get_aluno_id(), matricula.get_id()))
         connection.commit()
         
     def delete_matricula(self, matricula_id):

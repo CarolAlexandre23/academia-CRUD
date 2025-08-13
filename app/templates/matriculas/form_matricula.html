@@ -11,18 +11,29 @@
     <select name="aluno_id" id="aluno_id" required>
         <option value="" disabled selected hidden>Selecione um aluno</option>
         {% for aluno in alunos %}
-            <option value="{{ aluno.get_id() }}"
-                {% if matricula and aluno.get_id() == matricula.get_aluno_id() %}selected{% endif %}>
-                {{ aluno.get_nome() }}
-            </option>
+        <option value="{{ aluno.get_id() }}" {% if matricula and aluno.get_id()==matricula.get_aluno_id() %}selected{%
+            endif %}>
+            {{ aluno.get_nome() }}
+        </option>
         {% endfor %}
     </select>
 
     <label for="data_inicio">Data de Início:</label>
-    <input type="date" id="data_inicio" name="data_inicio" value="{{ matricula.get_data_inicio() if matricula else '' }}" required>
+    <input type="date" id="data_inicio" name="data_inicio"
+        value="{{ matricula.get_data_inicio() if matricula else '' }}" required>
 
     <label for="plano">Plano:</label>
-    <input type="text" id="plano" name="plano" placeholder="Mensal, Trimestral, Anual..." value="{{ matricula.get_plano() if matricula else '' }}" required>
+    <select name="plano" id="plano" required>
+        <option value="" disabled selected hidden>Escolha um plano</option>
+        <option value="Mensal" {% if matricula and matricula.get_plano()=='Mensal' %}selected{% endif %}>Mensal</option>
+        <option value="Trimestral" {% if matricula and matricula.get_plano()=='Trimestral' %}selected{% endif %}>
+            Trimestral</option>
+        <option value="Semestral" {% if matricula and matricula.get_plano()=='Semestral' %}selected{% endif %}>Semestral
+        </option>
+        <option value="Anual" {% if matricula and matricula.get_plano()=='Anual' %}selected{% endif %}>Anual</option>
+    </select>
+
+    <!-- <input type="text" id="plano" name="plano" placeholder="Mensal, Trimestral, Anual..." value="{{ matricula.get_plano() if matricula else '' }}" required> -->
 
     <button type="submit">Salvar</button>
 </form>
