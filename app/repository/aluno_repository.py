@@ -7,7 +7,7 @@ class AlunoRepository:
         connection = get_db()
         cursor = connection.cursor()
         cursor.execute("""
-            SELECT id, nome, idade, telefone
+            SELECT id, nome, data_nascimento, telefone
             FROM aluno
         """)
         rows = cursor.fetchall()
@@ -16,7 +16,7 @@ class AlunoRepository:
             aluno = AlunoModel(
                 id=row[0],
                 nome=row[1],
-                idade=row[2],
+                data_nascimento=row[2],
                 telefone=row[3]
             )
             alunos.append(aluno)
@@ -26,7 +26,7 @@ class AlunoRepository:
         connection = get_db()
         cursor = connection.cursor()
         cursor.execute("""
-            SELECT id, nome, idade, telefone
+            SELECT id, nome, data_nascimento, telefone
             FROM aluno
             WHERE id = ?
         """, (id,))
@@ -35,7 +35,7 @@ class AlunoRepository:
             return AlunoModel(
                 id=row[0],
                 nome=row[1],
-                idade=row[2],
+                data_nascimento=row[2],
                 telefone=row[3]
             )
         return None
@@ -44,9 +44,9 @@ class AlunoRepository:
         connection = get_db()
         cursor = connection.cursor()
         cursor.execute("""
-            INSERT INTO aluno (nome, idade, telefone)
+            INSERT INTO aluno (nome, data_nascimento, telefone)
             VALUES (?, ?, ?)
-        """, (aluno.get_nome(), aluno.get_idade(), aluno.get_telefone()))
+        """, (aluno.get_nome(), aluno.get_data_nascimento(), aluno.get_telefone()))
         connection.commit()
 
     def update_aluno(self, aluno):
@@ -54,9 +54,9 @@ class AlunoRepository:
         cursor = connection.cursor()
         cursor.execute("""
             UPDATE aluno
-            SET nome = ?, idade = ?, telefone = ?
+            SET nome = ?, data_nascimento = ?, telefone = ?
             WHERE id = ?
-        """, (aluno.get_nome(), aluno.get_idade(), aluno.get_telefone(), aluno.get_id()))
+        """, (aluno.get_nome(), aluno.get_data_nascimento(), aluno.get_telefone(), aluno.get_id()))
         connection.commit()
 
     def delete_aluno(self, aluno_id):
@@ -69,10 +69,5 @@ class AlunoRepository:
         """Retorna todas as matrículas associadas a um aluno específico"""
         connection = get_db()
         cursor = connection.cursor()
-        cursor.execute("""
-            SELECT id, id_aluno, id_curso, data_matricula
-            FROM matricula
-            WHERE id_aluno = ?
-        """, (aluno_id,))
-        rows = cursor.fetchall()
-        return rows 
+        cursor.execute("SELECT * FROM matricula WHERE aluno_id = ?", (aluno_id,))
+        return cursor.fetchall()

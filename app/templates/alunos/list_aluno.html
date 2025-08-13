@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Alunos</h2>
+
+<a href="{{ url_for('criar_aluno') }}">Criar Novo Aluno</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Data de Nascimento</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for aluno in alunos %}
+        <tr>
+            <td>{{ aluno.get_nome() }}</td>
+            <td>{{ aluno.get_telefone() }}</td>
+            <td>{{ aluno.get_data_nascimento() }}</td>
+            <td>
+                <a href="{{ url_for('editar_aluno', id=aluno.get_id()) }}">Editar</a> |
+                <a href="{{ url_for('excluir_aluno', id=aluno.get_id()) }}">Deletar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
